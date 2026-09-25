@@ -27,7 +27,7 @@ async def read_items(filter_query: Annotated[FilterParams, Query()]):
 
 
 class Image(BaseModel):
-    url: HttpUrl
+    url: HttpUrl #gives an error if it is invalid
     name: str
 
 
