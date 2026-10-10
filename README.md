@@ -4,6 +4,9 @@ My day-by-day notes and practice code from learning [FastAPI](https://fastapi.ti
 Each day folder holds the code I wrote, a copy of that code with educational comments,
 and a PDF that teaches the day's concepts for revision.
 
+**Start here:** [`fastapi_learning_overview.pdf`](fastapi_learning_overview.pdf) explains
+what every day covers, its key code, and how the days build on each other.
+
 ## Contents
 
 - [How each day is organized](#how-each-day-is-organized)
@@ -117,6 +120,7 @@ fastapi_tutorial/
 |-- .python-version         # Python 3.13
 |-- .gitignore
 |-- .env.example            # placeholder credentials (copy to .env)
+|-- fastapi_learning_overview.pdf   # one-document guide to every day
 |-- src/fastapi_tutorial/   # package stub created by `uv init` (needed for the build)
 |-- day2/     main.py, main_commented.py, day2_notes.pdf
 |-- day3/     main.py, main_commented.py, day3_notes.pdf
