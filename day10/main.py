@@ -15,19 +15,31 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 import os
 from dotenv import load_dotenv
+from sqlalchemy import URL
 
-load_dotenv()
+load_dotenv() # reads the .env file in the project root (it is ignored by git)
 
 password = os.getenv("DB_PASSWORD")
 username = os.getenv("DB_USERNAME")
 
-sqlite_url = (
-    f"postgresql+psycopg://{username}:{password}"
-    "@localhost:5432/heroes_db"
+if not username or not password:
+    raise RuntimeError(
+        "DB_USERNAME and DB_PASSWORD must be set. "
+        "Copy .env.example to .env in the project root and fill in your values."
+    )
+
+# URL.create keeps the credentials separate, so special characters
+# in the password (like @ or :) don't break the connection string
+database_url = URL.create(
+    drivername="postgresql+psycopg",
+    username=username,
+    password=password,
+    host=os.getenv("DB_HOST", "localhost"),
+    port=int(os.getenv("DB_PORT", "5432")),
+    database=os.getenv("DB_NAME", "heroes_db"),
 )
 
-connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url)
+engine = create_engine(database_url)
 
 
 def create_db_and_tables():
