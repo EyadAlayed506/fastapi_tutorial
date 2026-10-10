@@ -11,14 +11,23 @@ from sqlmodel import Field, Session, SQLModel, create_engine, select
 #     age: int | None = Field(default=None, index=True)
 #     secret_name: str
 
-# Code below omitted 👇
+# Code below omitted 
 
+import os
+from dotenv import load_dotenv
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+load_dotenv()
+
+password = os.getenv("DB_PASSWORD")
+username = os.getenv("DB_USERNAME")
+
+sqlite_url = (
+    f"postgresql+psycopg://{username}:{password}"
+    "@localhost:5432/heroes_db"
+)
 
 connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
+engine = create_engine(sqlite_url)
 
 
 def create_db_and_tables():
@@ -182,3 +191,14 @@ def update_her(hero_id:int,session:SessionDep,hero:HeroUpdate):
     session.commit()
     session.refresh(hero_db)
     return hero_db
+
+
+
+@app.delete("/heroes/{hero_id}")
+def delete_hero(hero_id: int, session: SessionDep):
+    hero = session.get(Hero, hero_id)
+    if not hero:
+        raise HTTPException(status_code=404, detail="Hero not found")
+    session.delete(hero)
+    session.commit()
+    return {"ok": True}
