@@ -1,0 +1,19 @@
+# Secrets - never commit real credentials
+.env
+
+# UV / virtual environment
+.venv/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local databases (e.g. SQLite files created while experimenting)
+*.db
+*.sqlite3
+
+# Build output
+dist/
+build/
+*.egg-info/
