@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hisbah · حِسبة</title>
+  <meta name="theme-color" content="#0f5e57">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f5e57'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='%23e9c46a' font-family='sans-serif' font-weight='700'%3E%D8%AD%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <div class="device">
+    <!-- Lock screen -->
+    <section id="lock" class="lock" hidden>
+      <div class="lock-top">
+        <button class="lang-btn" data-action="toggle-lang" aria-label="Language"></button>
+      </div>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">ح</div>
+        <h1><span data-i18n="appName"></span></h1>
+        <p class="muted" data-i18n="tagline"></p>
+      </div>
+      <p id="lock-title" class="lock-title"></p>
+      <div id="pin-dots" class="pin-dots" aria-live="polite"></div>
+      <p id="lock-msg" class="lock-msg" role="alert"></p>
+      <div class="keypad" id="keypad"></div>
+      <p class="tiny muted lock-foot" data-i18n="lockFoot"></p>
+    </section>
+
+    <!-- Main app -->
+    <section id="app" class="app" hidden>
+      <header class="topbar">
+        <div>
+          <div class="tiny muted" id="today-label"></div>
+          <div class="title" id="screen-title"></div>
+        </div>
+        <div class="topbar-actions">
+          <button class="lang-btn" data-action="toggle-lang" aria-label="Language"></button>
+          <button class="icon-btn" data-action="lock" aria-label="Lock" title="Lock">🔒</button>
+        </div>
+      </header>
+      <main id="screen" class="screen"></main>
+      <nav class="tabbar" id="tabbar">
+        <button data-tab="home"><span>🏠</span><b data-i18n="tabHome"></b></button>
+        <button data-tab="txns"><span>🧾</span><b data-i18n="tabTxns"></b></button>
+        <button data-tab="chat"><span>💬</span><b data-i18n="tabChat"></b></button>
+        <button data-tab="privacy"><span>🛡️</span><b data-i18n="tabPrivacy"></b></button>
+      </nav>
+    </section>
+
+    <div id="sheet-backdrop" class="sheet-backdrop" hidden></div>
+    <div id="sheet" class="sheet" hidden role="dialog" aria-modal="true"></div>
+    <div id="toast" class="toast" hidden></div>
+    <div id="tooltip" class="tooltip" hidden></div>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

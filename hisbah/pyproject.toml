@@ -1,0 +1,23 @@
+[project]
+name = "hisbah"
+version = "0.1.0"
+description = "Hisbah demo: a privacy-first AI personal finance assistant (CSC 496 capstone prototype)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.115",
+    "sqlmodel>=0.0.22",
+    "pandas>=2.2",
+    "cryptography>=43",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore:Using `httpx`"]
